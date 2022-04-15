@@ -62,7 +62,7 @@ Ví dụ: `python3 resample.py 32000 22050 ../example`
   
 4. Nên test với một vài audio để tìm ra cách đọc, ngắt nghỉ để phù hợp với tool trước khi chạy hết với toàn bộ tập dữ liệu.  
   
-5. Chú ý khi đặt tên audio: Nên đặt theo dạng `001.wav`, `002.wav`, ... Miễn làm sao cho thứ tự của chúng trùng với thứ tự label tương ứng trong file text chứa nhãn.
+5. Chú ý khi đặt tên audio: Nên đặt theo dạng `001.wav`, `002.wav`, ... Miễn làm sao cho thứ tự khi sắp xếp tăng dần của chúng trùng với thứ tự label tương ứng trong file text chứa nhãn.
     
 ## Credits
 1. https://github.com/wiseman/py-webrtcvad
