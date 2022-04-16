@@ -10,7 +10,7 @@ pip install webrtcvad
 pip install unidecode       # Optional, only for normalizing text label
 pip install vietnam-number  # Optional, only for normalizing number label
 
-git clone https://github.com/thanhtvt/auto-labeling-int3411.git
+git clone https://github.com/thanhtvt/auto-labeling-tool-int3411.git
 ```  
   
 ## Usage  
