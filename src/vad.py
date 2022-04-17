@@ -121,7 +121,7 @@ def detect_voice(wav_file, agg):
     segments = vad_collector(sample_rate, 30, 90, vad, frames)
     intervals = []
     for segment in segments:
-        start = f"{segment['start_time']:.6f}"
-        end = f"{segment['end_time']:.6f}"
+        start = segment['start_time']
+        end = segment['end_time']
         intervals.append((start, end))
     return intervals

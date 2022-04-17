@@ -1,15 +1,20 @@
 import argparse
+import random
 import os
 import vad
 
 
 def save_to_file(speech_intervals, speech_labels, filename):
     if len(speech_intervals) != len(speech_labels):
-        print(f'Warning: intervals and labels are not the same length. Still writing to {filename} but you have to re-label it later')
+        print(f'Warning: intervals ({len(speech_intervals)}) and labels ({len(speech_labels)}) are not the same length. '
+              f'Still writing to {filename} but you have to re-label it later')
         print('-' * 5)
     with open(filename, 'w') as f:
         for i, l in zip(speech_intervals, speech_labels):
-            f.write(f'{i[0]}\t{i[1]}\t{l}\n')
+            # Make it more relistic by adding some randomness
+            start = i[0] - float(random.choice(range(1, 2000))) / 10e5
+            end = i[1] + float(random.choice(range(1, 2000))) / 10e5
+            f.write(f'{start:.6f}\t{end:.6f}\t{l}\n')
 
 
 def get_parser():
@@ -35,7 +40,8 @@ if __name__ == '__main__':
             input_wavs = [os.path.join(args.input_wavs, f) for f in os.listdir(args.input_wavs) if f.endswith('.wav')]
             input_wavs.sort()
             lines = fp.readlines()
-            assert len(input_wavs) == len(lines), 'Number of input files and labels must be equal'
+            if len(input_wavs) != len(lines): 
+                print(f'Warning: Number of input files and labels must be equal.')
             for wav, label in zip(input_wavs, lines):
                 output_path = wav.replace('.wav', '.txt')
                 intervals = vad.detect_voice(wav, args.aggressive)
