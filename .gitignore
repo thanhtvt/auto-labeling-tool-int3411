@@ -1,5 +1,5 @@
 __pycache__/
 .idea/
-example/001.txt
-example/002.txt
+example/*.txt
+example/*.wav
 example/out/
