@@ -4,17 +4,26 @@ import os
 import vad
 
 
-def save_to_file(speech_intervals, speech_labels, filename):
+def save_to_file(speech_intervals, speech_labels, filename, add_sil):
     if len(speech_intervals) != len(speech_labels):
         print(f'Warning: intervals ({len(speech_intervals)}) and labels ({len(speech_labels)}) are not the same length. '
               f'Still writing to {filename} but you have to re-label it later')
         print('-' * 5)
+
     with open(filename, 'w') as f:
-        for i, l in zip(speech_intervals, speech_labels):
+        if add_sil:
+            f.write('0.000000\t')
+        for idx, (i, l) in enumerate(zip(speech_intervals, speech_labels)):
             # Make it more realistic by adding some randomness
             start = i[0] - float(random.choice(range(1, 2000))) / 10e5
+            if add_sil:
+                end_sil = start - float(random.choice(range(0, 100))) / 10e5
+                f.write(f'{end_sil:.6f}\tsil\n')
             end = i[1] + float(random.choice(range(1, 2000))) / 10e5
             f.write(f'{start:.6f}\t{end:.6f}\t{l}\n')
+            if add_sil and idx != len(speech_intervals) - 1:
+                start_sil = end + float(random.choice(range(0, 100))) / 10e5
+                f.write(f'{start_sil:.6f}\t')
 
 
 def get_parser():
@@ -46,9 +55,9 @@ if __name__ == '__main__':
                 output_path = wav.replace('.wav', '.txt')
                 intervals = vad.detect_voice(wav, args.aggressive)
                 labels = label.strip().split()
-                save_to_file(intervals, labels, output_path)
+                save_to_file(intervals, labels, output_path, args.sil)
         elif os.path.isfile(args.input_wavs):
             output_path = args.input_wavs.replace('.wav', '.txt')
             intervals = vad.detect_voice(args.input_wavs, args.aggressive)
             labels = fp.readlines()[0].strip().split()
-            save_to_file(intervals, labels, output_path)
+            save_to_file(intervals, labels, output_path, args.sil)
