@@ -11,7 +11,7 @@ def save_to_file(speech_intervals, speech_labels, filename):
         print('-' * 5)
     with open(filename, 'w') as f:
         for i, l in zip(speech_intervals, speech_labels):
-            # Make it more relistic by adding some randomness
+            # Make it more realistic by adding some randomness
             start = i[0] - float(random.choice(range(1, 2000))) / 10e5
             end = i[1] + float(random.choice(range(1, 2000))) / 10e5
             f.write(f'{start:.6f}\t{end:.6f}\t{l}\n')

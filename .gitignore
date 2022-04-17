@@ -2,4 +2,6 @@ __pycache__/
 .idea/
 example/*.txt
 example/*.wav
+!example/001.wav
+!example/002.wav
 example/out/
