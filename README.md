@@ -44,7 +44,9 @@ Demo kết quả:
 ![demo](statics/demo.png)
 
 ## Notes  
-1. Mô hình VAD chỉ nhận các audio có giá trị `sample rate` là một trong các số `[8000, 16000, 32000, 48000]`. Vậy nên, khi thu âm cần thu âm với tần số là 1 trong 4 số kia (lớn hơn số yêu cầu) và downsample sau đó (không được thu âm với tần số nhỏ hơn rồi upsample vì theo [định lý Nyquist-Shannon](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem)). Ví dụ, nếu yêu cầu thu âm với tần số 22050 Hz thì ta thu 32000 Hz rồi sau sẽ downsample xuống.  
+1. Script không detect tốt các âm gió (như âm "ph" trong từ "phải" hay âm "x" trong từ "xuống"), các bạn sử dụng có thể custom lại code của hàm `save_to_file(...)` trong file [label_generator.py](src/label_generator.py)  
+  
+3. Mô hình VAD chỉ nhận các audio có giá trị `sample rate` là một trong các số `[8000, 16000, 32000, 48000]`. Vậy nên, khi thu âm cần thu âm với tần số là 1 trong 4 số kia (lớn hơn số yêu cầu) và downsample sau đó (không được thu âm với tần số nhỏ hơn rồi upsample vì theo [định lý Nyquist-Shannon](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem)). Ví dụ, nếu yêu cầu thu âm với tần số 22050 Hz thì ta thu 32000 Hz rồi sau sẽ downsample xuống.  
 
 2. Có thể chạy lệnh sau để resample về đúng tần số yêu cầu. Trong đó `<inp_sr>` là sample rate ban đầu, `<out_sr>` là sample rate đầu ra, `<data>` có thể là folder chứa tập các audio input hoặc 1 audio.  
 ```
