@@ -20,7 +20,7 @@ python3 label_generator.py [-a <aggressive>] [-s] <input_wavs> <input_labels>
 ```
 Trong đó:
 - `aggressive`: độ "chặt" của thuật toán xác định vùng có tiếng nói (0 - 3). Càng cao thì thuật toán càng chặt chẽ (Mặc định là 3).  
-- `-s`: sử dụng flag này để label cả những đoạn sil (chưa hỗ trợ vì chủ repo lười).  
+- `-s`: sử dụng flag này để label cả những đoạn sil.  
 - `input_wavs`: directory chứa các file audio .wav cần gán nhãn (hỗ trợ cả với 1 file audio duy nhất).  
 - `input_labels`: file .txt chứa các label cần gán nhãn.  
   
@@ -60,7 +60,7 @@ Ví dụ: `python3 resample.py 32000 22050 ../example`
 3. Khi thu âm, cần thu trong môi trường **yên tĩnh**, mỗi từ nói ra cần **ngắt một khoảng** nhất định rồi mới nói tiếp. Phát âm to, rõ ràng, ít nhiễu sẽ đẩy độ chính xác lên mức tốt nhất. Ví dụ như hình dưới, câu trên do không ngắt đủ dài nên gán 2 từ thành 1, dẫn đến lệch các từ sau.  
 ![img](statics/record-tagger.png)  
   
-3. Tips cho các bạn không thể thu âm trong môi trường yên tĩnh hoàn toàn. [Audacity](https://www.audacityteam.org/) có hỗ trợ tính năng `noise reduction`. Cụ thể cách sử dụng tham khảo ở [đây](https://manual.audacityteam.org/man/noise_reduction.html). Tuy nhiên nó cũng sẽ làm giọng bạn hơi thay đổi đi một chút, mức độ thì tùy độ nhiễu của audio.  
+3. Tips cho các bạn không thể thu âm trong môi trường yên tĩnh hoàn toàn. [Audacity](https://www.audacityteam.org/) có hỗ trợ tính năng `noise reduction`. Cụ thể cách sử dụng tham khảo ở [đây](https://manual.audacityteam.org/man/noise_reduction.html). Thực tế cho thấy mình kết hợp với chức năng này của Audacity giúp sai lệch của tool chỉ là 6/100 file tại lần thu đầu tiên và fix hết tại lần thu thứ 2.  
   
 4. Nên test với một vài audio để tìm ra cách đọc, ngắt nghỉ để phù hợp với tool trước khi chạy hết với toàn bộ tập dữ liệu.  
   
