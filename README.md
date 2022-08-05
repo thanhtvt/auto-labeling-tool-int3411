@@ -19,7 +19,7 @@ Di chuyển đến `src/` và chạy lệnh
 python3 label_generator.py [-a <aggressive>] [-s] <input_wavs> <input_labels>  
 ```
 Trong đó:
-- `aggressive`: độ "chặt" của thuật toán xác định vùng có tiếng nói (0 - 3). Càng cao thì thuật toán càng chặt chẽ (Mặc định là 3).  
+- `aggressive`: độ "chặt" của thuật toán xác định vùng có tiếng nói (0 - 3). Càng cao thì thuật toán càng chặt chẽ (Mặc định là 3). Khuyến khích nên đặt giá trị bằng 2  
 - `-s`: sử dụng flag này để label cả những đoạn sil.  
 - `input_wavs`: directory chứa các file audio .wav cần gán nhãn (hỗ trợ cả với 1 file audio duy nhất).  
 - `input_labels`: file .txt chứa các label cần gán nhãn.  
